@@ -1,8 +1,16 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <h2>{{ profile.user.username }}'s Profile</h2>
-  <p>Additional profile information goes here.</p>
+  <h2>{{ profile.name }} ({{ profile.user.username }})'s Profile</h2>
+
+  {% if profile.avatar %}
+    <img src="{{ profile.avatar.url }}" alt="Avatar">
+  {% endif %}
+
+<a href="{% url 'edit_profile' %}">Edit Profile</a>
+
+<p>Bio: {{ profile.bio }}</p>
+
 
   <h3>My Posts</h3>
   <ul>
@@ -22,4 +30,7 @@
     {{ form.as_p }}
     <button type="submit">Post</button>
   </form>
+
+<h3>Delete Profile</h3>
+<a href="{% url 'delete_profile' %}">Delete Profile</a>
 {% endblock %}
