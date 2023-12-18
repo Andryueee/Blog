@@ -1,0 +1,26 @@
+<!-- templates/blog/post_detail.html -->
+
+{% extends 'base.html' %}
+
+{% block title %}Post Detail{% endblock %}
+
+{% block content %}
+  <h2>{{ post.author.username }} - {{ post.created_at }}</h2>
+  <p>{{ post.content }}</p>
+  <hr>
+
+  <h3>Comments</h3>
+  {% for comment in comments %}
+    <p>{{ comment.user.username }} - {{ comment.created_at }}</p>
+    <p>{{ comment.text }}</p>
+    <hr>
+  {% endfor %}
+
+  <!-- Форма для добавления нового комментария -->
+  <h3>Add a Comment</h3>
+  <form method="post" action="{% url 'add_comment' post.id %}">
+    {% csrf_token %}
+    <textarea name="text" required></textarea>
+    <button type="submit">Add Comment</button>
+  </form>
+{% endblock %}

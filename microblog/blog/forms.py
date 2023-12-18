@@ -18,7 +18,7 @@ class CommentForm(forms.ModelForm):
 class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
-        fields = []
+        fields = ['name', 'avatar', 'bio']
 
 
 class UserRegistrationForm(UserCreationForm):
